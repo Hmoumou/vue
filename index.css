@@ -1,0 +1,30 @@
+ .box{
+     width: 100px;
+     height: 100px;
+     margin-top: 20px;
+    background-color:red;
+}
+.done{
+    text-decoration: line-through;
+}
+.my-btn{
+    
+    font-size: 14px;
+    width: 100px;
+    height: 50px;
+    border-radius: 50%;
+    background: #409eff;
+    color: #fff;
+    line-height: 50px;
+    text-align: center;
+    border: none;
+    outline: none;
+}
+.my-btn:active{
+    background: #3a8ee6;
+}
+.icon{
+    display: inline-block;
+    border: 10px solid transparent;
+    border-top: 10px solid #333;
+}

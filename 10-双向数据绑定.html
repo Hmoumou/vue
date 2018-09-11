@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- <input v-model="text" type="text" />
+        <h1>{{text}}</h1> -->
+        <h1>{{num1}}
+        </h1>
+        <button @click="toadd">++++</button>
+       <my-container :my-num='num1'
+       @reduce-parent="reduce"
+       @add-parent="add"
+       ></my-container>
+       <my-container ></my-container>
+       <my-container ></my-container>
+       <my-container ></my-container>
+
+    </div>
+</body>
+<script src="./vue.js"></script>
+<script>
+    const myContainer = {
+        props: {
+            'my-num': {
+                type: Number,
+            },
+        },
+        data() {
+            return {
+                num: this.myNum
+            }
+        },
+        template:`
+        <div>
+            <button @click = "reduce">-</button>
+            <strong>{{num}}</strong>
+            <button @click="add">+</button>
+        </div>
+        `,
+        methods: {
+            reduce() {
+                this.$emit('reduce-parent')
+            },
+            add(){
+                this.$emit('add-parent')
+            }
+        },
+        watch: {
+            myNum(val) {
+                this.num = val
+            }
+        },
+    }
+    const app =  new Vue({
+        components:{ myContainer },
+        el:'#app',
+        data: {
+            text:'hello',
+            num1:10
+        },
+        methods: {
+            toadd() {
+                this.num1++
+            },
+            reduce(){
+                this.num1--
+            },
+            add(){
+            this.num1++
+        }
+        },
+       
+    })
+</script>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <my-btn text="切换" @click.native = "hClick"></my-btn>
+        <my-btn  @to-you="getChild" :text="btnText"></my-btn>
+    </div>
+</body>
+<script src="./vue.js"></script>
+<script>
+    //父向子传值
+    const myBtn = {
+        props:{
+            text:{
+                type:String
+            }
+        },
+        template:`
+        <button @click = "toFather" class="my-btn">{{text}}</button>
+        `,
+        data(){
+        return{
+            child:'来自子组件的值'
+        }
+        },
+        methods:{
+            toFather(){
+                this.$emit('to-you',this.child)
+            }
+        }
+    }
+    Vue.component('my-btn',myBtn)
+    //父向子传值 用props
+    //子向父传值 用event（$emit触发一个自定义事件）
+    const app = new Vue ({
+        el:'#app',
+        data:{
+            btnText:'我的按钮'
+        },
+        methods:{
+            hClick(){
+                this.btnText='你的按钮'
+            },
+            getChild(child){
+                console.log(child);
+            }
+        }
+    })
+</script>
+</html>

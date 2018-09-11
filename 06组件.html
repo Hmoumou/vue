@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <div id="app">
+      <my-container> 
+         
+        </my-container>
+    </div>
+</body>
+<script src="./vue.js"></script>
+<script>
+    //注册一个组件 
+    const myBtn = {
+        template:`
+            <button class="my-btn">
+              <i class="icon"></i> <slot></slot>
+            </button>
+        `
+    }
+    //声明一个组件
+   const container={
+      template:`
+      <h1>
+         我是h1
+            <my-btn>我的按钮</my-btn>
+            <my-btn>它的按钮</my-btn>  
+      </h1>     
+      `,
+    //   components:{
+    //         myBtn
+    //   }
+   }
+   Vue.component("my-container",container)
+    Vue.component("my-btn",myBtn)   
+    
+    //全局注册组件
+    // Vue.component('my-btn',myBtn)
+  var app = new Vue({
+    el:'#app',
+})
+</script>
+</html>
