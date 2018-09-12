@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+            <!-- <home-page></home-page> -->
+        <router-view> </router-view>
+    </div>
+</body>
+<script src="/vue/js文件/vue.js"></script>
+<script src="/vue/js文件/vue-router.js"></script>
+
+<script>
+    const homePage = {
+        template:`
+        <div class="container">
+            <h1>欢迎来到首页面</h1>
+            <ul>
+                <li>
+                    <router-link to='/index'>首页</router-link>
+                </li>
+                <li>
+                    <router-link to='/about'>详情</router-link>
+                </li>
+            </ul>
+        </div>
+        `
+    }
+    const aboutPage = {
+        template:`
+        <div class="container">
+            <h1>欢迎来到详情页面</h1>
+            <ul>
+                <li>
+                    <router-link to='/index'>首页</router-link>
+                </li>
+                <li>
+                    <router-link to='/about'>详情</router-link>
+                </li>  
+            </ul>
+        </div>
+        `
+    }
+    const router = new VueRouter({
+        routes: [
+            {
+                path:'/index',
+                component:homePage
+            },
+            {
+                path:'/about',
+                component:aboutPage
+            }
+        ]
+    })
+    // Vue.component("home-page",homePage)
+    const app = new Vue({
+        el:'#app',
+        router
+    })
+</script>
+</html>
